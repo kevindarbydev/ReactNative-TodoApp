@@ -2,7 +2,7 @@
 
 #### TODO takes advantage of Tailwind CSS for the styling resulting in a much smaller CSS bundle size.
 
-##### Created using Create-React-App, December 2022.
+##### Created using npx create-expo-app, December 2022.
 
 ## **Instructions to run locally**
 ### Clone or download the repo and open it in an IDE with an integrated terminal
