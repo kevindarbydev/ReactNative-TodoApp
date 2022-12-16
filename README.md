@@ -11,6 +11,7 @@ Clone or download the repo and open it in an IDE with an integrated terminal. <b
 ### **FRONTEND** dependencies download and run project
 
 ```
+cd frontend
 npm install
 npm start
 
