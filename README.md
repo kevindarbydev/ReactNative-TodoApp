@@ -6,19 +6,22 @@
 
 ## **INSTRUCTIONS TO RUN LOCALLY**
 
-Clone or download the repo and open it in an IDE with an integrated terminal. <br>
-Run the following command to download all the dependencies for the front end:
+Clone or download the repo and open it in an IDE with an integrated terminal. <br><br>
+
+### **FRONTEND** dependencies download and run project
 
 ```
 npm install
+npm start
 
 ```
 
-Run the following commands to change directories into the sanity folder and download all the dependencies for the back end:
+### **BACKEND** dependencies download and run project
 
 ```
 cd sanity
 npm install
+npm run dev
 
 ```
 
