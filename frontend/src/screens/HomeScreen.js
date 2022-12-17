@@ -1,11 +1,9 @@
-import React, { useLayoutEffect, useState, useEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import client from "../../sanity";
 import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -15,7 +13,6 @@ import Task from "../components/Task";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [users, setUsers] = useState([]);
 
   // From Tut:
   const [task, setTask] = useState();
@@ -40,19 +37,16 @@ const HomeScreen = () => {
     });
   });
 
-  useEffect(() => {
-    client.fetch(`*[_type == "user"]`).then((data) => {
-      setUsers(data);
-    });
-  }, []);
-
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-gray-200">
       {/* Today's task */}
-      <View style={styles.taskWrapper}>
-        <Text style={styles.sectionTitle}>Today's Tasks</Text>
+      <View className="pt-20 px-5">
+        <Text className="text-2xl font-bold">Today's Tasks</Text>
 
-        <View style={styles.items}>
+        <View
+          className="mt-8"
+          // style={styles.items}
+        >
           {/* This is where the tasks will go */}
           {taskItems.map((item, index) => {
             return (
@@ -67,68 +61,27 @@ const HomeScreen = () => {
       {/* Write a Task */}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.writeTask}
+        className="absolute bottom-14 flex-row justify-around items-center w-full"
+        // style={styles.writeTask}
       >
         <TextInput
-          style={styles.input}
+          className="bg-white w-60 py-4 px-4 rounded-full border-zinc-300 border"
+          // style={styles.input}
           placeholder={"Write a Task"}
           onChangeText={(text) => setTask(text)}
           value={task}
         />
         <TouchableOpacity onPress={handleAddTask}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
+          <View
+            className="w-16 h-16 bg-white rounded-full justify-center items-center border-zinc-300 border"
+            // style={styles.addWrapper}
+          >
+            <Text>+</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#E8EAED",
-  },
-  taskWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  items: {
-    marginTop: 30,
-  },
-  writeTask: {
-    position: "absolute",
-    bottom: 60,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  input: {
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    width: 250,
-    backgroundColor: "white",
-    borderRadius: 60,
-    borderColor: "#C0C0C0",
-    borderWidth: 1,
-  },
-  addWrapper: {
-    width: 60,
-    height: 60,
-    backgroundColor: "white",
-    borderRadius: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    borderColor: "#C0C0C0",
-    borderWidth: 1,
-  },
-  addText: {},
-});
 
 export default HomeScreen;
