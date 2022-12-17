@@ -1,51 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const Task = (props) => {
-    return (
-        <View style={styles.item}>
-            <View style={styles.left}>
-                <TouchableOpacity style={styles.square}></TouchableOpacity>
-                <Text style={styles.itemText}>{props.text}</Text>
-            </View>
-            <View style={styles.circular}></View>
-        </View>
-    )
-}
+  return (
+    <View className="bg-white p-4 rounded-lg flex-row items-center justify-between mb-5">
+      <View className="flex-row items-center flex-wrap">
+        <TouchableOpacity className="w-6 h-6 bg-[#55BCF6] opacity-40 rounded-md mr-4"></TouchableOpacity>
+        <Text className="max-w-[80%]">{props.text}</Text>
+      </View>
+      <View className="w-3 h-3 border-[#55BCF6] border-2 rounded-full"></View>
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({
-    item: {
-        backgroundColor: 'white',
-        padding: 15,
-        borderRadius: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-    },
-    left: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-    },
-    square: {
-        width: 24,
-        height: 24,
-        backgroundColor: '#55BCF6',
-        opacity: 0.4,
-        borderRadius: 5,
-        marginRight: 15,
-    },
-    itemText: {
-        maxWidth: '80%',
-    },
-    circular: {
-        width: 12,
-        height: 12,
-        borderColor: '#55BCF6',
-        borderWidth: 2,
-        borderRadius: 5,
-    },
-});
-
-export default Task
+export default Task;

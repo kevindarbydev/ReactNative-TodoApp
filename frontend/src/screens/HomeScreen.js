@@ -12,6 +12,13 @@ import {
 import Task from "../components/Task";
 
 const HomeScreen = () => {
+  // Removes default header
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  });
+
   const navigation = useNavigation();
 
   // From Tut:
@@ -30,23 +37,13 @@ const HomeScreen = () => {
     setTaskItems(itemsCopy);
   };
 
-  // Removes default header
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  });
-
   return (
     <View className="flex-1 bg-gray-200">
       {/* Today's task */}
       <View className="pt-20 px-5">
         <Text className="text-2xl font-bold">Today's Tasks</Text>
 
-        <View
-          className="mt-8"
-          // style={styles.items}
-        >
+        <View className="mt-8">
           {/* This is where the tasks will go */}
           {taskItems.map((item, index) => {
             return (
@@ -62,20 +59,15 @@ const HomeScreen = () => {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="absolute bottom-14 flex-row justify-around items-center w-full"
-        // style={styles.writeTask}
       >
         <TextInput
           className="bg-white w-60 py-4 px-4 rounded-full border-zinc-300 border"
-          // style={styles.input}
           placeholder={"Write a Task"}
           onChangeText={(text) => setTask(text)}
           value={task}
         />
         <TouchableOpacity onPress={handleAddTask}>
-          <View
-            className="w-16 h-16 bg-white rounded-full justify-center items-center border-zinc-300 border"
-            // style={styles.addWrapper}
-          >
+          <View className="w-16 h-16 bg-white rounded-full justify-center items-center border-zinc-300 border">
             <Text>+</Text>
           </View>
         </TouchableOpacity>
