@@ -1,10 +1,21 @@
 import { View, Text, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+//import  { auth }  from "../../firebase";
 
 const LoginScreen = () => {
   // basic login screen, vanilla css. will refactor to tailwind later
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  /* const handleSignup = () => {
+    auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(userCredentials => {
+      const user = userCredentials.user;
+      console.log(user.email);
+    })
+    .catch(err => { alert(err.message)});
+  } */
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
@@ -27,7 +38,7 @@ const LoginScreen = () => {
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={handleSignup}
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
