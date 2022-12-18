@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const TodosSchema = new mongoose.Schema({
+const TodoSchema = new mongoose.Schema({
   experience: {
     type: String,
     required: true,
@@ -23,6 +23,5 @@ const TodosSchema = new mongoose.Schema({
   },
 });
 
-// Mongoose will assume there is a collection called the plural of this name (i.e., 'users' in this case).
-const Todos = mongoose.model("TodoItem", TodosSchema);
-module.exports = Todos;
+const Todo = mongoose.model("Todo", TodoSchema);
+module.exports = Todo;
