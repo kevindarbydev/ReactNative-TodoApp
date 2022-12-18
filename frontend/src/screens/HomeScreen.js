@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import Task from "../components/Task";
+import LevelBar from "../components/LevelBar";
 
 const HomeScreen = () => {
   // Removes default header
@@ -24,6 +25,8 @@ const HomeScreen = () => {
   // From Tut:
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
+  const [level, setLevel] = useState(1);
+  const [xp, setXp] = useState(0);
 
   const handleAddTask = () => {
     Keyboard.dismiss();
@@ -35,20 +38,26 @@ const HomeScreen = () => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
+    setXp(xp + 20);
+
+    if (xp === 80) {
+      setLevel(level + 1);
+      setXp(0);
+    }
   };
 
   return (
     <View className="flex-1 bg-gray-200">
       {/* Today's task */}
       <View className="pt-20 px-5">
+        <LevelBar level={level} xp={xp} />
         <Text className="text-2xl font-bold">Today's Tasks</Text>
-
         <View className="mt-8">
           {/* This is where the tasks will go */}
           {taskItems.map((item, index) => {
             return (
               <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item} />
+                <Task text={item} xp='20' />
               </TouchableOpacity>
             );
           })}
