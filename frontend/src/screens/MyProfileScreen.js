@@ -1,13 +1,14 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 
 const MyProfileScreen = () => {
   return (
-    <View className="flex-1 bg-gray-200 items-center">
+    
+    <ScrollView className="flex-1 bg-gray-200">
       <Text className="font-semibold text-base mt-5">
         Here you can see your completed tasks!
-      </Text>
-    </View>
+      </Text>      
+    </ScrollView>
   );
 };
 
