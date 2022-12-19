@@ -51,7 +51,7 @@ const HomeScreen = () => {
       {/* Today's task */}
       <View className="pt-20 px-5">
         <LevelBar level={level} xp={xp} />
-        <Text className="text-2xl font-bold">Today's Tasks</Text>
+        <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
         <View className="mt-8">
           {/* This is where the tasks will go */}
           {taskItems.map((item, index) => {
