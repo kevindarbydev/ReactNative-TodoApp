@@ -3,8 +3,10 @@ import React from "react";
 
 const MyProfileScreen = () => {
   return (
-    <View>
-      <Text>Here you can see your completed tasks!</Text>
+    <View className="flex-1 bg-gray-200 items-center">
+      <Text className="font-semibold text-base mt-5">
+        Here you can see your completed tasks!
+      </Text>
     </View>
   );
 };
