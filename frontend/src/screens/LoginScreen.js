@@ -1,4 +1,11 @@
-import { View, Text, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 //import  { auth }  from "../../firebase";
 
@@ -17,10 +24,7 @@ const LoginScreen = () => {
     .catch(err => { alert(err.message)});
   } */
   return (
-    <KeyboardAvoidingView
-      className="flex-1 items-center justify-center"
-      behavior="padding"
-    >
+    <KeyboardAvoidingView className="flex-1 items-center justify-center">
       <View className="w-50">
         <TextInput
           placeholder="Email"
