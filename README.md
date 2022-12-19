@@ -20,9 +20,9 @@ npm start
 ### **BACKEND** dependencies download and run project
 
 ```
-cd sanity
+cd backend
 npm install
-npm run dev
+npm start
 
 ```
 
