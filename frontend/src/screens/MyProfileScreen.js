@@ -4,7 +4,7 @@ import React from "react";
 const MyProfileScreen = () => {
   return (
     <View>
-      <Text>MyProfile</Text>
+      <Text>Here you can see your completed tasks!</Text>
     </View>
   );
 };

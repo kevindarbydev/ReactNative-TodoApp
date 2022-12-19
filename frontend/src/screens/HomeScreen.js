@@ -38,22 +38,24 @@ const HomeScreen = () => {
   // Wrapped the whole thing in an async await function
   // Store ----------------------------
   const storeLevel = async () => {
+    console.log("storing level: " + level);
     await AsyncStorage.setItem("level", JSON.stringify(level));
   };
 
   const storeXp = async () => {
+    console.log("storing xp: " + xp);
     await AsyncStorage.setItem("xp", JSON.stringify(xp));
   };
 
   // Retrieve ----------------------------
   const retrieveLevel = async () => {
     const value = await AsyncStorage.getItem("level");
-    console.log(value);
+    console.log("Retrieving level: " + value);
   };
 
   const retrieveXp = async () => {
     const value = await AsyncStorage.getItem("xp");
-    console.log(value);
+    console.log("Retrieving xp: " + value);
   };
 
   const completeTask = (index) => {
@@ -84,8 +86,17 @@ const HomeScreen = () => {
 
   return (
     <View className="flex-1 bg-gray-200">
+      <TouchableOpacity
+      //looks a bit scuffed atm, will style soon
+        onPress={() => navigation.navigate("MyProfile")}
+        className="bg-white items-center align-center w-20 mt-5 py-4 rounded-lg border-blue-500 border-2"
+      >
+        <Text className="text-blue-500 font-semibold text-base">
+          My Profile
+        </Text>
+      </TouchableOpacity>
       {/* Today's task */}
-      <View className="pt-20 px-5">
+      <View className="pt-10 px-5">
         <LevelBar level={level} xp={xp} />
         <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
         <View className="mt-8">
