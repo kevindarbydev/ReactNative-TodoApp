@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import Task from "../components/Task";
 import LevelBar from "../components/LevelBar";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
   // Removes default header
@@ -35,6 +35,27 @@ const HomeScreen = () => {
     setTask(null);
   };
 
+  // Wrapped the whole thing in an async await function
+  // Store ----------------------------
+  const storeLevel = async () => {
+    await AsyncStorage.setItem("level", JSON.stringify(level));
+  };
+
+  const storeXp = async () => {
+    await AsyncStorage.setItem("xp", JSON.stringify(xp));
+  };
+
+  // Retrieve ----------------------------
+  const retrieveLevel = async () => {
+    const value = await AsyncStorage.getItem("level");
+    console.log(value);
+  };
+
+  const retrieveXp = async () => {
+    const value = await AsyncStorage.getItem("xp");
+    console.log(value);
+  };
+
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
@@ -45,14 +66,18 @@ const HomeScreen = () => {
       setLevel(level + 1);
       setXp(0);
     }
-
-    // Trying to store level and xp in storage (localStorage and sessionStorage do not work in React-Native)
-    AsyncStorage.setItem('level', level.toString());
-    AsyncStorage.setItem('xp', xp.toString());
-
-
+    // storing level and xp when task completed
+    storeLevel();
+    storeXp();
   };
 
+  // console logging level and xp every time HomeScreen rerenders
+  retrieveLevel();
+  retrieveXp();
+
+  // Trying to store level and xp in storage (localStorage and sessionStorage do not work in React-Native)
+  // AsyncStorage.setItem('level', level.toString());
+  // AsyncStorage.setItem('xp', xp.toString());
   // Getting the items from the storage is giving issues because it returns an Object Array (if anyone can figure out how to make it work go ahead)
   //const currentLevel = AsyncStorage.getItem('level');
   //const currentXp = AsyncStorage.getItem('xp');
@@ -68,7 +93,7 @@ const HomeScreen = () => {
           {taskItems.map((item, index) => {
             return (
               <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item} xp='20' />
+                <Task text={item} xp="20" />
               </TouchableOpacity>
             );
           })}
