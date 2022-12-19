@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Task from "../components/Task";
 import LevelBar from "../components/LevelBar";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = () => {
   // Removes default header
@@ -44,7 +45,17 @@ const HomeScreen = () => {
       setLevel(level + 1);
       setXp(0);
     }
+
+    // Trying to store level and xp in storage (localStorage and sessionStorage do not work in React-Native)
+    AsyncStorage.setItem('level', level.toString());
+    AsyncStorage.setItem('xp', xp.toString());
+
+
   };
+
+  // Getting the items from the storage is giving issues because it returns an Object Array (if anyone can figure out how to make it work go ahead)
+  //const currentLevel = AsyncStorage.getItem('level');
+  //const currentXp = AsyncStorage.getItem('xp');
 
   return (
     <View className="flex-1 bg-gray-200">
