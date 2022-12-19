@@ -1,25 +1,18 @@
 const mongoose = require("mongoose");
 const TodoSchema = new mongoose.Schema({
-  experience: {
-    type: String,
-    required: true,
-  },
-  level: {
-    type: String,
-    required: true,
-  },
-  note: {
+  task: {
     type: String,
     required: true,
   },
   dateCreated: {
     type: Date,
-    required: true,
+    default: Date.now,
   },
-  //
-  email: {
+  dateCompleted: {
+    type: Date,
+  },
+  userId: {
     type: String,
-    required: true,
   },
 });
 
