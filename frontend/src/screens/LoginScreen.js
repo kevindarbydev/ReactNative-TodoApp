@@ -11,11 +11,11 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 
 
-const LoginScreen = () => {   
-  
+const LoginScreen = () => {
+  //<yourIPhere>
   const navigation = useNavigation();
-const url = "http://192.168.2.11:3001/user/login";
-   
+  const url = "http://192.168.2.11:3001/user/login";
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -30,23 +30,20 @@ const url = "http://192.168.2.11:3001/user/login";
           },
           body: JSON.stringify({
             email: values.email,
-            password: values.password,           
+            password: values.password,
           }),
         })
           .then((data) => data.json())
           .then((json) => {
             if (json.success === true) {
               try {
-                alert(
-                  "Successfully logged in... redirecting to homepage"
-                );
+                alert("Successfully logged in... redirecting to homepage");
                 navigation.navigate("Home");
               } catch (error) {
                 console.log(error);
               }
             } else {
-              console.log("Login failed: " +json.success);
-              
+              console.log("Login failed: " + json.success);
             }
           })
           .catch((error) => console.log(error));

@@ -96,8 +96,8 @@ module.exports.checkLogin = async (req, res) => {
  
   try {
     if (email && password) {
-      // Check to see if the user already exists.     
-      const user = await userModel.find({ email: email });
+      // Check to see if the user already exists.        
+      const user = await userModel.findOne({ email: email });
       if (!user) {
         console.log("Invalid login - email " + email + " doesn't exist.");
         res.send({ success: false });
