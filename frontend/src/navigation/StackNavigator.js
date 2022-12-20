@@ -26,6 +26,8 @@ const StackNavigator = () => {
     <Stack.Navigator>
       {/* Screens */}
       {/* Empty div wrapping the first part of the conditional (no siblings rule) */}
+      <Stack.Screen name="Root" component={Root} 
+        options={{ headerShown: false }} /> 
       {isLoggedIn ? (
         <>
           <Stack.Screen name="Home" component={HomeScreen} />
