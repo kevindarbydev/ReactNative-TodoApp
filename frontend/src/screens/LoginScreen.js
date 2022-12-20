@@ -5,10 +5,7 @@ import { Formik } from "formik";
 import { URL_IP } from "@env";
 
 const LoginScreen = () => {
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
   const navigation = useNavigation();
   const url = `${URL_IP}/user/login`;
 
