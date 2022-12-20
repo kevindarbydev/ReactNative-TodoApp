@@ -86,15 +86,7 @@ const HomeScreen = () => {
 
   return (
     <View className="flex-1 bg-gray-200">
-      <TouchableOpacity
-      //looks a bit scuffed atm, will style soon
-        onPress={() => navigation.navigate("MyProfile")}
-        className="bg-white items-center align-center w-20 mt-5 py-4 rounded-lg border-blue-500 border-2"
-      >
-        <Text className="text-blue-500 font-semibold text-base">
-          My Profile
-        </Text>
-      </TouchableOpacity>
+      
       {/* Today's task */}
       <View className="pt-10 px-5">
         <LevelBar level={level} xp={xp} />
