@@ -1,12 +1,5 @@
-import {
-  View,
-  Text,
-  Button,
-  KeyboardAvoidingView,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import React, { useState } from "react";
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "react-native";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 import { URL_IP } from "@env";

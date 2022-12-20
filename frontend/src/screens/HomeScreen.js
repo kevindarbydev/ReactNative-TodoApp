@@ -14,13 +14,6 @@ import LevelBar from "../components/LevelBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
-  // Removes default header
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  });
-
   const navigation = useNavigation();
 
   // From Tut:
@@ -86,7 +79,6 @@ const HomeScreen = () => {
 
   return (
     <View className="flex-1 bg-gray-200">
-      
       {/* Today's task */}
       <View className="pt-10 px-5">
         <LevelBar level={level} xp={xp} />
