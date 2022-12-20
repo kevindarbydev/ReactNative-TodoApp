@@ -11,17 +11,15 @@ import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 
 const RegisterScreen = () => {
-  const navigation = useNavigation();
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
+  const navigation = useNavigation(); 
+const url = "http://<yourIPhere>:3001/user/save";
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       onSubmit={(values) => {
-        console.log(values);
-
-        fetch("http://localhost:3001/user/save", {
+        console.log("(Register) email: " +values.email);
+console.log("(Register) pw: " + values.password);
+        fetch(url, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -34,20 +32,23 @@ const RegisterScreen = () => {
         })
           .then((data) => data.json())
           .then((json) => {
-            if (json.success === true) {
+           if (json.success === true) {
               try {
-                alert("Successfully Registered! - Redirecting you to the login page");
+                alert(
+                  "Successfully Registered! - Redirecting you to the login page"
+                );
                 navigation.navigate("Login");
               } catch (error) {
                 console.log(error);
               }
             } else {
-              alert(`Invalid registration - email ${values.email} already exists`);
+              alert(
+                `Invalid registration - email ${values.email} already exists`
+              );
             }
           })
           .catch((error) => console.log(error));
-      }}
-    >
+      }}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <KeyboardAvoidingView className="flex-1 items-center justify-center">
           <View className="w-50">

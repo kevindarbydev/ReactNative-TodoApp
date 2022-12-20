@@ -29,6 +29,7 @@ module.exports.deleteUser = async (req, res) => {
 module.exports.saveUser = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  console.log("Received email: " + email + "\n Password: " + password);
 
   try {
     if (email && password && validator.isStrongPassword(password)) {
@@ -92,15 +93,16 @@ module.exports.checkLogin = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   console.log("Received email: " + email + " and password: " + password);
+ 
   try {
     if (email && password) {
-      // Check to see if the user already exists.
-      const user = await userModel.findOne({ email: email });
+      // Check to see if the user already exists.     
+      const user = await userModel.find({ email: email });
       if (!user) {
         console.log("Invalid login - email " + email + " doesn't exist.");
         res.send({ success: false });
         return;
-      } else {
+      } else {        
         const isSame = await bcrypt.compare(password, user.password);
         if (isSame) {
           console.log("User exists " + email);
@@ -112,7 +114,7 @@ module.exports.checkLogin = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log(error.message);
+    console.log("(LOGIN) Error occured: " + error.message);
   }
   res.send({ success: false });
 };
