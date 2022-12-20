@@ -9,13 +9,13 @@ import useAuth from "../hooks/useAuth";
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
-  const { user } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <Stack.Navigator>
       {/* Screens */}
       {/* Empty div wrapping the first part of the conditional (no siblings rule) */}
-      {user ? (
+      {isLoggedIn ? (
         <>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="MyProfile" component={MyProfileScreen} />
