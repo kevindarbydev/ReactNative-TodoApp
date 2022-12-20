@@ -1,8 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
-import LoginScreen from "../screens/LoginScreen";
 import MyProfileScreen from "../screens/MyProfileScreen";
+import LoginScreen from "../screens/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen";
+
 import useAuth from "../hooks/useAuth";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -15,6 +17,7 @@ function Root() {
       <Drawer.Screen name="Home" component={HomeScreen}></Drawer.Screen>
       <Drawer.Screen name="Profile" component={MyProfileScreen}></Drawer.Screen>
       <Drawer.Screen name="Login" component={LoginScreen}></Drawer.Screen>
+      <Drawer.Screen name="Register" component={RegisterScreen}></Drawer.Screen>
     </Drawer.Navigator>
   );
 }
@@ -26,8 +29,7 @@ const StackNavigator = () => {
     <Stack.Navigator>
       {/* Screens */}
       {/* Empty div wrapping the first part of the conditional (no siblings rule) */}
-      <Stack.Screen name="Root" component={Root} 
-        options={{ headerShown: false }} /> 
+      <Stack.Screen name="Root" component={Root} options={{ headerShown: false }} />
       {isLoggedIn ? (
         <>
           <Stack.Screen name="Home" component={HomeScreen} />

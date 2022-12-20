@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 //import  { auth }  from "../../firebase";
 
@@ -13,6 +14,7 @@ const LoginScreen = () => {
   // basic login screen, vanilla css. will refactor to tailwind later
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation();
 
   /* const handleSignup = () => {
     auth
@@ -49,11 +51,10 @@ const LoginScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           //onPress={handleSignup}
+          onPress={() => navigation.navigate("Register")}
           className="bg-white items-center w-full mt-1 py-4 rounded-lg border-blue-500 border-2"
         >
-          <Text className="text-blue-500 font-semibold text-base">
-            Register
-          </Text>
+          <Text className="text-blue-500 font-semibold text-base">Not yet registered?</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
