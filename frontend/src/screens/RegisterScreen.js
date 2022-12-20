@@ -11,14 +11,15 @@ import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 
 const RegisterScreen = () => {
-  const navigation = useNavigation(); 
-const url = "http://<yourIPhere>:3001/user/save";
+  const navigation = useNavigation();
+
+  const url = "http://<yourIPhere>:3001/user/save";
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       onSubmit={(values) => {
-        console.log("(Register) email: " +values.email);
-console.log("(Register) pw: " + values.password);
+        console.log("(Register) email: " + values.email);
+        console.log("(Register) pw: " + values.password);
         fetch(url, {
           method: "POST",
           headers: {
@@ -32,7 +33,7 @@ console.log("(Register) pw: " + values.password);
         })
           .then((data) => data.json())
           .then((json) => {
-           if (json.success === true) {
+            if (json.success === true) {
               try {
                 alert(
                   "Successfully Registered! - Redirecting you to the login page"
@@ -48,7 +49,8 @@ console.log("(Register) pw: " + values.password);
             }
           })
           .catch((error) => console.log(error));
-      }}>
+      }}
+    >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <KeyboardAvoidingView className="flex-1 items-center justify-center">
           <View className="w-50">
@@ -73,7 +75,9 @@ console.log("(Register) pw: " + values.password);
               onPress={handleSubmit}
               className="bg-white items-center w-full mt-1 py-4 rounded-lg border-blue-500 border-2"
             >
-              <Text className="text-blue-500 font-semibold text-base">Register</Text>
+              <Text className="text-blue-500 font-semibold text-base">
+                Register
+              </Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

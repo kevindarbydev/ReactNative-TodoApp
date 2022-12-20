@@ -10,11 +10,10 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Formik } from "formik";
 
-
 const LoginScreen = () => {
-  //<yourIPhere>
+  
   const navigation = useNavigation();
-  const url = "http://192.168.2.11:3001/user/login";
+  const url = "http://<yourIPhere>:3001/user/login";
 
   return (
     <Formik
