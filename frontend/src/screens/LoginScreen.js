@@ -2,10 +2,15 @@ import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "r
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Formik } from "formik";
+import { URL_IP } from "@env";
 
 const LoginScreen = () => {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   const navigation = useNavigation();
-  const url = "http://<yourIPhere>:3001/user/login";
+  const url = `${URL_IP}/user/login`;
 
   return (
     <Formik
