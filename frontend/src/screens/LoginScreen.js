@@ -6,9 +6,9 @@ import { URL_IP } from "@env";
 import { AuthContext } from "../hooks/useAuth";
 
 const LoginScreen = () => {
-
   const navigation = useNavigation();
-  const { setIsLoggedIn } = React.useContext(AuthContext);
+  const { setIsLoggedIn, user, setUser } = React.useContext(AuthContext);
+
   const url = `${URL_IP}/user/login`;
 
   return (
@@ -16,7 +16,8 @@ const LoginScreen = () => {
       initialValues={{ email: "", password: "" }}
       onSubmit={(values) => {
         console.log("(Login) email: " + values.email);
-        console.log("(Login)pw: " + values.password);
+        console.log("(Login) pw: " + values.password);
+        console.log("(Login) userId before success: " + user._id);
         fetch(url, {
           method: "POST",
           headers: {
@@ -34,6 +35,10 @@ const LoginScreen = () => {
               try {
                 alert("Successfully logged in... redirecting to homepage");
                 setIsLoggedIn(true);
+                // Storing whole user object in authContext on log in
+                setUser(json.user);
+                console.log("(Login) userId after success: " + json.user._id);
+
                 navigation.navigate("Home");
               } catch (error) {
                 console.log(error);

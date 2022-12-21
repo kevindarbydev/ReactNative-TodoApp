@@ -93,21 +93,22 @@ module.exports.checkLogin = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   console.log("Received email: " + email + " and password: " + password);
- 
+
   try {
     if (email && password) {
-      // Check to see if the user already exists.        
+      // Check to see if the user already exists.
       const user = await userModel.findOne({ email: email });
       if (!user) {
         console.log("Invalid login - email " + email + " doesn't exist.");
         res.send({ success: false });
         return;
-      } else {        
+      } else {
         const isSame = await bcrypt.compare(password, user.password);
         if (isSame) {
           console.log("User exists " + email);
           console.log("Successful login");
-          res.send({ success: true, email: email });
+          // sending back the whole user object when this endpoint is called successfully
+          res.send({ success: true, user: user });
 
           return;
         }
