@@ -55,7 +55,8 @@ export default function Info() {
 
   return (
     <View style={[styles.container, styles.center]}>
-      <View style={[styles.shadowButton, styles.center]}>
+      {/* how it works button */}
+      <View style={[styles.center]}>
         <TouchableOpacity
           style={[styles.mainButton, styles.center]}
           onPress={modalTrigger}
@@ -69,13 +70,12 @@ export default function Info() {
       >
         <Animated.View style={[styles.background, open]}>
           <View>
-            <Text style={[styles.text]}>Welcome to our cool app.</Text>
+            {/* <Text style={[styles.text]}>Welcome to our cool app.</Text> */}
             <Text style={[styles.text, styles.moreText]}>
               Keep yourself motivated by leveling up with experience points! Add
-              your tasks and click on them once you've completed them and you'll
-              gain XP!
+              your tasks and tap them once you're done and you'll gain XP! 🕹😁🕹
             </Text>
-            <View style={{ flexDirection: "row" }}>
+            <View>
               <TouchableOpacity
                 style={[styles.modalButton, styles.center]}
                 onPress={close}
@@ -112,34 +112,36 @@ const styles = StyleSheet.create({
     backgroundColor: "#ff6ff7",
     borderRadius: 100,
     borderColor: "black",
-    marginTop: 60,
+    marginTop: 90,
     borderWidth: 1,
     paddingTop: 12,
     paddingBottom: 12,
     paddingLeft: 20,
     paddingRight: 20,
-    marginHorizontal: 5,
-    flex: 1,
+    // marginHorizontal: 2,
+    // flex: 1,
     maxWidth: "50%",
     marginStart: "25%",
   },
 
   moreText: {
     textAlign: "center",
-    marginTop: 850,
+    marginTop: 1050,
   },
 
-  // how it works button
+  // how it works button, text body
   text: {
     fontSize: 23,
     color: "black",
     fontWeight: "500",
     fontFamily: "monospace",
   },
+
   center: {
     justifyContent: "center",
     alignItems: "center",
   },
+
   shadowButton: {
     borderColor: "blue",
     borderWidth: 1,
