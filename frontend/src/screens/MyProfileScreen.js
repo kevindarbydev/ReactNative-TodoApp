@@ -18,10 +18,10 @@ const MyProfileScreen = () => {
           console.log(JSON.stringify(response.data.task));
           var taskArray = [];
           for (let taskObj of response.data) {
-            console.log(taskObj.task);
+           // console.log("MPS: " + taskObj._id); 
             taskArray.push({
               task: taskObj.task,
-              id: '',
+              _id: taskObj._id,
               dateCompleted: taskObj.dateCompleted,
             });
           }
@@ -36,6 +36,7 @@ const MyProfileScreen = () => {
   }, []);
 
 const allCompletedTasks = completeTasks.map((task) => {
+  //console.log(task);
   return (
     <CompletedTask
       key={task._id}
