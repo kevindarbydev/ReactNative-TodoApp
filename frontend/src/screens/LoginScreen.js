@@ -58,14 +58,14 @@ const LoginScreen = () => {
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
-              className="bg-white h-16 px-10 py-15 rounded-lg mt-5"
+              className="bg-white w-60 p-5 text-center rounded-lg m-5"
             />
             <TextInput
               placeholder="Password"
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
               value={values.password}
-              className="bg-white px-10 py-5 rounded-lg mt-5"
+              className="bg-white w-60 p-5 text-center rounded-lg m-5"
               secureTextEntry
             />
           </View>
