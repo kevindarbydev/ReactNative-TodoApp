@@ -134,7 +134,6 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: "black",
     fontWeight: "500",
-    fontFamily: "monospace",
   },
 
   center: {

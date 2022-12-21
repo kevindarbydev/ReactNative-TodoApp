@@ -6,7 +6,7 @@ import { Formik } from "formik";
 const RegisterScreen = () => {
   const navigation = useNavigation();
 
-  const url = `https://fb26-174-89-98-93.ngrok.io/user/save`;
+  const url = `https://709f-174-89-98-93.ngrok.io/user/save`;
   return (
     <Formik
       initialValues={{ email: "", password: "" }}

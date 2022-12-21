@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../hooks/useAuth";
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -12,10 +12,9 @@ import {
 import Task from "../components/Task";
 import LevelBar from "../components/LevelBar";
 import Info from "../components/Info";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
+  const { user } = React.useContext(AuthContext);
 
   // From Tut:
   const [task, setTask] = useState();
@@ -29,29 +28,6 @@ const HomeScreen = () => {
     setTask(null);
   };
 
-  // Wrapped the whole thing in an async await function
-  // Store ----------------------------
-  const storeLevel = async () => {
-    console.log("storing level: " + level);
-    await AsyncStorage.setItem("level", JSON.stringify(level));
-  };
-
-  const storeXp = async () => {
-    console.log("storing xp: " + xp);
-    await AsyncStorage.setItem("xp", JSON.stringify(xp));
-  };
-
-  // Retrieve ----------------------------
-  const retrieveLevel = async () => {
-    const value = await AsyncStorage.getItem("level");
-    console.log("Retrieving level: " + value);
-  };
-
-  const retrieveXp = async () => {
-    const value = await AsyncStorage.getItem("xp");
-    console.log("Retrieving xp: " + value);
-  };
-
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
@@ -62,27 +38,14 @@ const HomeScreen = () => {
       setLevel(level + 1);
       setXp(0);
     }
-    // storing level and xp when task completed
-    storeLevel();
-    storeXp();
   };
 
-  // console logging level and xp every time HomeScreen rerenders
-  retrieveLevel();
-  retrieveXp();
-
-  // Trying to store level and xp in storage (localStorage and sessionStorage do not work in React-Native)
-  // AsyncStorage.setItem('level', level.toString());
-  // AsyncStorage.setItem('xp', xp.toString());
-  // Getting the items from the storage is giving issues because it returns an Object Array (if anyone can figure out how to make it work go ahead)
-  //const currentLevel = AsyncStorage.getItem('level');
-  //const currentXp = AsyncStorage.getItem('xp');
 
   return (
     <View className="flex-1 bg-gray-200">
       {/* Today's task */}
       <View className="pt-10 px-5">
-        <LevelBar level={level} xp={xp} />
+        <LevelBar level={user.level} xp={user.xp} />
         <Info />
         <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
         <View className="mt-8">
