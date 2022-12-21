@@ -9,7 +9,7 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const { setIsLoggedIn, user, setUser } = React.useContext(AuthContext);
   
-  const url = `${API_URL}/user/login`;
+  const url = `http://192.168.2.11:3001/user/login`;
 
   return (
     <Formik

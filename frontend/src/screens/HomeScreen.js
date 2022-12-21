@@ -17,7 +17,7 @@ import Info from "../components/Info";
 const HomeScreen = () => {
   const { user } = React.useContext(AuthContext);
   const currentLevel = Number(user.level); 
-  const saveTaskUrl = "http://${API_URL}/todo/save";
+  const saveTaskUrl = "http://192.168.2.11:3001/todo/save";
   const currentXp = Number(user.xp);
 
   // From Tut:
@@ -34,13 +34,13 @@ const HomeScreen = () => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
-    currentXp = currentXp + 20;
+   // currentXp = currentXp + 20;
     saveTask(task);
 
-    if (xp === 80) {
-      currentLevel = currentLevel + 1;
-      currentXp = 0
-    }
+    // if (xp === 80) {
+    //   currentLevel = currentLevel + 1;
+    //   currentXp = 0
+    // }
   };
   const saveTask = (task) => {
     var today = new Date();

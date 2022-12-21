@@ -21,7 +21,8 @@ const MyProfileScreen = () => {
             console.log(taskObj.task);
             taskArray.push({
               task: taskObj.task,
-              id: ''
+              id: '',
+              dateCompleted: taskObj.dateCompleted,
             });
           }
           setCompleteTasks(taskArray);
@@ -35,7 +36,13 @@ const MyProfileScreen = () => {
   }, []);
 
 const allCompletedTasks = completeTasks.map((task) => {
-  return <CompletedTask key={task._id} task={task.task} />
+  return (
+    <CompletedTask
+      key={task._id}
+      task={task.task}
+      dateCompleted={task.dateCompleted}
+    />
+  );
 })
 
   return (
