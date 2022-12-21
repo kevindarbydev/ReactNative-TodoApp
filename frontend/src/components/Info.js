@@ -5,15 +5,13 @@ import {
   View,
   Animated,
   StyleSheet,
-  Dimensions,
 } from "react-native";
 
 //!-------------------------------------------------------------------
-//! currently working on this, pushed just to help revert the many changes quicker - Chris
+//! currently working on this, pushed (pushing) just to help revert the many changes quicker - Chris
 
 export default function Info() {
   const [animation, setAnimation] = useState(new Animated.Value(0));
-  const { height } = Dimensions.get("window");
 
   const color = animation.interpolate({
     inputRange: [0, 0.2, 1.8, 2],
@@ -28,12 +26,6 @@ export default function Info() {
   const openModal = animation.interpolate({
     inputRange: [0, 1],
     outputRange: [0, 1],
-    extrapolate: "clamp",
-  });
-
-  const saveModal = animation.interpolate({
-    inputRange: [1, 2],
-    outputRange: [0, -height],
     extrapolate: "clamp",
   });
 
@@ -53,18 +45,8 @@ export default function Info() {
     }).start();
   };
 
-  const save = () => {
-    Animated.timing(animation, {
-      toValue: 2,
-      duration: 500,
-      useNativeDriver: false,
-    }).start(() => {
-      animation.setValue(0);
-    });
-  };
-
   const open = {
-    transform: [{ scale: openModal }, { translateY: saveModal }],
+    transform: [{ scale: openModal }],
   };
 
   const background = {
@@ -86,10 +68,8 @@ export default function Info() {
         pointerEvents="box-none"
       >
         <Animated.View style={[styles.background, open]}>
-          <View style={[styles.wrap]}>
-            <Text style={[styles.text, styles.helloText]}>
-              Welcome to our cool app.
-            </Text>
+          <View>
+            <Text style={[styles.text]}>Welcome to our cool app.</Text>
             <Text style={[styles.text, styles.moreText]}>
               Keep yourself motivated by leveling up with experience points! Add
               your tasks and click on them once you've completed them and you'll
@@ -112,7 +92,7 @@ export default function Info() {
 
 const styles = StyleSheet.create({
   background: {
-    // position: "absolute",
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
@@ -128,6 +108,7 @@ const styles = StyleSheet.create({
 
   // "GOT IT" button
   modalButton: {
+    // kind of fuschia
     backgroundColor: "#ff6ff7",
     borderRadius: 100,
     borderColor: "black",
@@ -145,56 +126,35 @@ const styles = StyleSheet.create({
 
   moreText: {
     textAlign: "center",
-    marginTop: 64,
+    marginTop: 850,
   },
-
-  helloText: {
-    fontSize: 30,
-    textAlign: "center",
-    marginTop: 20,
-  },
-
-  //   wrap: {
-  //     padding: 20,
-  //     margin: 20,
-  //     borderRadius: 8,
-  //     backgroundColor: "#ffffff",
-  //     // shadowColor: "#4048BF",
-  //     // shadowOffset: {
-  //     //   width: 8.4,
-  //     //   height: 8.4,
-  //     // },
-  //     // shadowOpacity: 0.74,
-  //     // shadowRadius: 30,
-  //     elevation: 10,
-  //   },
 
   // how it works button
   text: {
-    fontSize: 30,
-    color: "#ffffff",
-    fontWeight: "600",
-    // fontFamily: "Monospace",
+    fontSize: 23,
+    color: "black",
+    fontWeight: "500",
+    fontFamily: "monospace",
   },
   center: {
     justifyContent: "center",
     alignItems: "center",
   },
-  //   shadowButton: {
-  //     borderColor: "blue",
-  //     borderWidth: 1,
-  //     borderRadius: 105,
-  //     width: 210,
-  //     height: 80,
-  //     shadowColor: "#4048BF",
-  //     shadowOffset: {
-  //       width: 8.4,
-  //       height: 8.4,
-  //     },
-  //     shadowOpacity: 0.5,
-  //     shadowRadius: 30,
-  //     elevation: 10,
-  //   },
+  shadowButton: {
+    borderColor: "blue",
+    borderWidth: 1,
+    borderRadius: 105,
+    width: 210,
+    height: 80,
+    shadowColor: "#4048BF",
+    shadowOffset: {
+      width: 8.4,
+      height: 8.4,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 30,
+    elevation: 10,
+  },
   mainButton: {
     zIndex: 10,
     width: 200,
@@ -202,17 +162,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: "black",
     borderWidth: 1,
-    // shadowColor: "#4048BF",
-    // shadowOffset: {
-    //   width: 6.4,
-    //   height: 6.4,
-    // },
-    // shadowOpacity: 0.5,
-    // shadowRadius: 20,
     backgroundColor: "orange",
   },
   container: {
-    // flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "rgb(229, 231, 235)",
   },
 });
