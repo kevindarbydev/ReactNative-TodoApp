@@ -62,16 +62,15 @@ module.exports.saveUser = async (req, res) => {
 /*------ UPDATE BY ID ------*/
 module.exports.updateUser = async (req, res) => {
   const id = req.params.id;
-  const email = req.body.email;
-  const password = req.body.password;
+  const level = req.body.level;
+  const xp = req.body.xp;
 
   console.log("User id: " + id);
   try {
-    hashedPassword = await bcrypt.hash(password, saltRounds);
     const user = {
       id: id,
-      email: email,
-      password: hashedPassword,
+      level: level,
+      xp: xp,
     };
 
     console.log("Trying to update record with credentials: " + id);

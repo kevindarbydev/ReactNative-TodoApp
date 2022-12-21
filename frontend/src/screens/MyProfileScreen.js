@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { AuthContext } from "../hooks/useAuth";
 import CompletedTask from "../components/CompletedTask";
 import { API_URL } from "@env";
-
 const MyProfileScreen = () => {
   const { user } = React.useContext(AuthContext);
   const [completeTasks, setCompleteTasks] = useState([]);
@@ -20,7 +19,7 @@ const MyProfileScreen = () => {
           console.log(JSON.stringify(response.data.task));
           var taskArray = [];
           for (let taskObj of response.data) {
-            // console.log("MPS: " + taskObj._id);
+            // console.log("MPS: " + taskObj._id); 
             taskArray.push({
               task: taskObj.task,
               _id: taskObj._id,
@@ -39,8 +38,14 @@ const MyProfileScreen = () => {
 
   const allCompletedTasks = completeTasks.map((task) => {
     //console.log(task);
-    return <CompletedTask key={task._id} task={task.task} dateCompleted={task.dateCompleted} />;
-  });
+    return (
+      <CompletedTask
+        key={task._id}
+        task={task.task}
+        dateCompleted={task.dateCompleted}
+      />
+    );
+  })
 
   return (
     <View className="flex-1 items-center">
