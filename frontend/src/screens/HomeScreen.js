@@ -84,7 +84,7 @@ const HomeScreen = () => {
           dateCompleted: today,
         })
         .then(function (response) {
-          console.log(response);
+          console.log("Response: " + response);
         })
         .catch(function (error) {
           console.log(error);

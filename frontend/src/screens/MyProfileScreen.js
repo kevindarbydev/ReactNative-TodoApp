@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import axios, * as others from "axios";
 import React, { useState, useEffect } from "react";
 import { AuthContext } from "../hooks/useAuth";
@@ -19,7 +19,7 @@ const MyProfileScreen = () => {
           console.log(JSON.stringify(response.data.task));
           var taskArray = [];
           for (let taskObj of response.data) {
-            // console.log("MPS: " + taskObj._id); 
+            // console.log("MPS: " + taskObj._id);
             taskArray.push({
               task: taskObj.task,
               _id: taskObj._id,
@@ -45,13 +45,14 @@ const MyProfileScreen = () => {
         dateCompleted={task.dateCompleted}
       />
     );
-  })
+  });
 
   return (
-    <View className="flex-1 items-center">
+    <ScrollView className="flex-1"
+    contentContainerStyle="center">
       <Text className="font-bold text-2xl mt-5">Completed Tasks</Text>
       {allCompletedTasks}
-    </View>
+    </ScrollView>
   );
 };
 

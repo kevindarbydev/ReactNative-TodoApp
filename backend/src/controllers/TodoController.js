@@ -43,7 +43,7 @@ console.log("Received task: " + task + ", id: " + id);
     await todoModel.create(TodoInfo);
 
     res.send({ success: true });
-    console.log("Task created successfully")
+    console.log("Task saved in DB successfully")
   } catch (err) {
     console.log(err);
   }
