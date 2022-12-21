@@ -29,7 +29,8 @@ module.exports.getById = async (req, res) => {
 module.exports.saveTodo = async (req, res) => {
   const task = req.body.task;
   const id = req.body.userId;
-  console.log(task+ "....id: "+id);
+  const dateCompleted = req.body.dateCompleted;
+  console.log("Task content: " + task + "....id: "+id + "  dateCompleted: "+dateCompleted);
   if (id !== undefined) {
 console.log("Received task: " + task + ", id: " + id);
   }
@@ -37,6 +38,7 @@ console.log("Received task: " + task + ", id: " + id);
     const TodoInfo = {
       task: task,
       userId: id,
+      dateCompleted: dateCompleted,
     };
     await todoModel.create(TodoInfo);
 

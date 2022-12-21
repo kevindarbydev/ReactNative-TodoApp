@@ -8,7 +8,7 @@ import { AuthContext } from "../hooks/useAuth";
 const LoginScreen = () => {
   const navigation = useNavigation();
   const { setIsLoggedIn, user, setUser } = React.useContext(AuthContext);
-
+  
   const url = `${API_URL}/user/login`;
 
   return (
@@ -80,7 +80,7 @@ const LoginScreen = () => {
               onPress={() => navigation.navigate("Register")}
               className="bg-white items-center w-full mt-1 py-4 rounded-lg border-blue-500 border-2"
             >
-              <Text className="text-blue-500 font-semibold text-base">Not yet registered?</Text>
+                            <Text className="text-blue-500 font-semibold text-base">Not yet registered?  </Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

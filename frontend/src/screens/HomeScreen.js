@@ -43,12 +43,14 @@ const HomeScreen = () => {
     }
   };
   const saveTask = (task) => {
+    var today = new Date();
     console.log(task + " " + user._id);
     try {
       axios
         .post(saveTaskUrl, {
           task: task,
           userId: user._id,
+          dateCompleted: today,
         })
         .then(function (response) {
           console.log(response);
@@ -65,7 +67,7 @@ const HomeScreen = () => {
     <View className="flex-1">
       {/* Today's task */}
       <View className="pt-10 px-5">
-          <LevelBar level={currentLevel} xp={currentXp} />
+         <LevelBar level={currentLevel} xp={currentXp} /> 
         <Info />
         <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
         <View className="mt-8">
