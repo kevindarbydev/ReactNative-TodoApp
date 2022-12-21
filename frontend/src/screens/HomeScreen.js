@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Task from "../components/Task";
 import LevelBar from "../components/LevelBar";
+import Info from "../components/Info";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
@@ -86,10 +87,10 @@ const HomeScreen = () => {
 
   return (
     <View className="flex-1 bg-gray-200">
-      
       {/* Today's task */}
       <View className="pt-10 px-5">
         <LevelBar level={level} xp={xp} />
+        <Info />
         <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
         <View className="mt-8">
           {/* This is where the tasks will go */}
@@ -111,7 +112,9 @@ const HomeScreen = () => {
         <TextInput
           className="bg-white w-60 py-4 px-4 rounded-full border-zinc-300 border"
           placeholder={"Write a Task"}
-          onChangeText={(text) => setTask(text)}
+          onChangeText={(text) =>
+            text === null ? console.log("error") : setTask(text)
+          }
           value={task}
         />
         <TouchableOpacity onPress={handleAddTask}>
