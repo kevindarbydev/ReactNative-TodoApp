@@ -64,13 +64,20 @@ module.exports.updateUser = async (req, res) => {
   const id = req.params.id;
   const level = req.body.level;
   const xp = req.body.xp;
+  const email = req.body.email;
+  const password = req.body.password;
+  const username = req.body.username;
 
   console.log("User id: " + id);
   try {
+    hashedPassword = await bcrypt.hash(password, saltRounds);
     const user = {
       id: id,
       level: level,
       xp: xp,
+      email: email,
+      password: hashedPassword,
+      username: username,
     };
 
     console.log("Trying to update record with credentials: " + id);

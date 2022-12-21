@@ -55,6 +55,9 @@ const HomeScreen = () => {
       body: JSON.stringify({
         level: level,
         xp: xp,
+        email: user.email,
+        password: user.password,
+        username: user.username,
       }),
     })
       .then((data) => data.json())
@@ -62,7 +65,6 @@ const HomeScreen = () => {
         if (json.success === true) {
           try {
             alert("Level and XP have been updated to " + level + xp);
-
           } catch (error) {
             console.log(error);
           }
@@ -105,10 +107,7 @@ const HomeScreen = () => {
           {/* This is where the tasks will go */}
           {taskItems.map((item, index) => {
             return (
-              <TouchableOpacity
-                key={index}
-                onPress={() => completeTask(index, item)}
-              >
+              <TouchableOpacity key={index} onPress={() => completeTask(index, item)}>
                 <Task text={item} xp="20" />
               </TouchableOpacity>
             );
@@ -124,9 +123,7 @@ const HomeScreen = () => {
         <TextInput
           className="bg-white w-60 py-4 px-4 rounded-full border-zinc-300 border"
           placeholder={"Write a Task"}
-          onChangeText={(text) =>
-            text === null ? console.log("error") : setTask(text)
-          }
+          onChangeText={(text) => (text === null ? console.log("error") : setTask(text))}
           value={task}
         />
         <TouchableOpacity onPress={handleAddTask}>
