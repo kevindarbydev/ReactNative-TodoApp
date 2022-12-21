@@ -9,7 +9,8 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const { setIsLoggedIn, user, setUser } = React.useContext(AuthContext);
 
-  const url = `${URL_IP}/user/login`;
+  // const url = `${URL_IP}/user/login`;
+  const url = `https://fb26-174-89-98-93.ngrok.io/user/login`;
 
   return (
     <Formik

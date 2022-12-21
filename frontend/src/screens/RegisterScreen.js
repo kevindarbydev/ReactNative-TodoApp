@@ -2,12 +2,11 @@ import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "r
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
-import { URL_IP } from "@env";
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
 
-  const url = `${URL_IP}/user/save`;
+  const url = `https://fb26-174-89-98-93.ngrok.io/user/save`;
   return (
     <Formik
       initialValues={{ email: "", password: "" }}

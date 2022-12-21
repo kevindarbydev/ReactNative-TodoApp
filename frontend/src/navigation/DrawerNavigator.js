@@ -3,7 +3,7 @@ import HomeScreen from "../screens/HomeScreen";
 import MyProfileScreen from "../screens/MyProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import { LogoutButton } from "../components/LogoutButton";
+import LogoutScreen from "../screens/LogoutScreen";
 import { AuthContext } from "../hooks/useAuth";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -20,7 +20,7 @@ function DrawerNavigator() {
           <>
             <Drawer.Screen name="Home" component={HomeScreen}></Drawer.Screen>
             <Drawer.Screen name="Profile" component={MyProfileScreen}></Drawer.Screen>
-            <Drawer.Screen name="Log Out" component={LogoutButton}></Drawer.Screen>
+            <Drawer.Screen name="Log Out" component={LogoutScreen}></Drawer.Screen>
           </>
         ) : (
           <>
