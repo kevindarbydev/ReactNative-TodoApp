@@ -8,15 +8,26 @@ import CommunityScreen from "../screens/CommunityScreen";
 import { AuthContext } from "../hooks/useAuth";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 
 const Drawer = createDrawerNavigator();
+
+const bgGlobalTheme = DefaultTheme;
+bgGlobalTheme.colors.background = "#1d5a91";
+
+const bgDrawerTheme = "#5db0f9";
 
 function DrawerNavigator() {
   const { isLoggedIn, setIsLoggedIn } = React.useContext(AuthContext);
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
+    <NavigationContainer theme={bgGlobalTheme}>
+      <Drawer.Navigator
+        screenOptions={{
+          drawerStyle: {
+            backgroundColor: bgDrawerTheme,
+          },
+        }}
+      >
         {isLoggedIn ? (
           <>
             <Drawer.Screen name="Home" component={HomeScreen}></Drawer.Screen>

@@ -11,7 +11,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <View className="flex-1 bg-gray-200">
+    <View className="flex-1">
       <Text className="text-2xl font-bold text-center">
         Are you sure you want to Log Out? You will not be able to access your Tasks once logged out.
       </Text>

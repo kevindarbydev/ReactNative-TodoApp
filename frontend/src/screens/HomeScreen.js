@@ -40,9 +40,8 @@ const HomeScreen = () => {
     }
   };
 
-
   return (
-    <View className="flex-1 bg-gray-200">
+    <View className="flex-1">
       {/* Today's task */}
       <View className="pt-10 px-5">
         <LevelBar level={user.level} xp={user.xp} />

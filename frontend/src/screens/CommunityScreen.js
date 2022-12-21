@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { API_URL } from "@env";
 import CommunityUserCard from "../components/CommunityUserCard";
@@ -16,13 +16,13 @@ const CommunityScreen = () => {
   }, []);
 
   const allUsersElements = allUsers.map((user) => {
-    return <CommunityUserCard key={user._id} email={user.email} level={user.level} xp={user.xp} />;
+    return <CommunityUserCard key={user._id} email={user.email} level={user.level} />;
   });
 
   return (
-    <View>
-      <Text>{allUsersElements}</Text>
-    </View>
+    <ScrollView>
+      <View className="mt-5">{allUsersElements}</View>
+    </ScrollView>
   );
 };
 

@@ -2,15 +2,14 @@ import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "r
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Formik } from "formik";
-import { URL_IP } from "@env";
+import { API_URL } from "@env";
 import { AuthContext } from "../hooks/useAuth";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const { setIsLoggedIn, user, setUser } = React.useContext(AuthContext);
 
-  // const url = `${URL_IP}/user/login`;
-  const url = `https://709f-174-89-98-93.ngrok.io/user/login`;
+  const url = `${API_URL}/user/login`;
 
   return (
     <Formik
