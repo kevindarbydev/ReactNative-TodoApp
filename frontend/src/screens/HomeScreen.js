@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios, * as others from "axios";
 import { AuthContext } from "../hooks/useAuth";
 import {
@@ -16,22 +16,43 @@ import Info from "../components/Info";
 import { API_URL } from "@env";
 
 const HomeScreen = () => {
-  const { user } = React.useContext(AuthContext);
-  const currentLevel = Number(user.level);
-  const currentXp = Number(user.xp);
+  const { user, setUser } = React.useContext(AuthContext);
+
+  //Trying to refresh the user here (but for some reason, the xp is not being save in the DB)
+  useEffect(() => {
+    setUser(user);
+  }, [user]);
+
   const saveTaskUrl = `${API_URL}/todo/save`;
   const userUrl = `${API_URL}/user/update/${user._id}`;
 
   // From Tut:
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
-  const [level, setLevel] = useState(currentLevel);
-  const [xp, setXp] = useState(currentXp);
+
+  let currentLevel = user.level;
+  let currentXp = user.xp;
+
+  // Was testing out useEffect here ----- but doesn't really make sense
+  // useEffect(() => {
+  //   setXp((prevState) => {
+  //     prevState + 20;
+  //   });
+  //   if (xp === 80) {
+  //     setLevel((prevState) => {
+  //       prevState + 1;
+  //     });
+  //     setXp(0);
+  //   }
+  // }, [xp, level]);
 
   const handleAddTask = () => {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task]);
     setTask(null);
+    // Was using this for debugging another problem (Resolved)
+    // console.log("CurrentLevel: " + level + " & CurrentXp: " + xp);
+    // console.log("Current logged in user info --> ID:" + user._id + ", Username: " + user.username);
   };
 
   const completeTask = async (index, task) => {
@@ -39,11 +60,11 @@ const HomeScreen = () => {
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
     saveTask(task);
-    setXp(xp + 20);
 
-    if (xp === 80) {
-      setLevel(level + 1);
-      setXp(0);
+    currentXp = currentXp + 20;
+    if (currentXp === 80) {
+      currentLevel = currentLevel + 1;
+      currentXp = 0;
     }
 
     await fetch(userUrl, {
@@ -53,8 +74,8 @@ const HomeScreen = () => {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
-        level: level,
-        xp: xp,
+        level: currentLevel,
+        xp: currentXp,
         email: user.email,
         password: user.password,
         username: user.username,
@@ -64,7 +85,7 @@ const HomeScreen = () => {
       .then((json) => {
         if (json.success === true) {
           try {
-            alert("Level and XP have been updated to " + level + xp);
+            alert("Level and XP have been updated to LVL: " + currentLevel + ", XP: " + currentXp);
           } catch (error) {
             console.log(error);
           }

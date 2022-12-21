@@ -70,13 +70,11 @@ module.exports.updateUser = async (req, res) => {
 
   console.log("User id: " + id);
   try {
-    hashedPassword = await bcrypt.hash(password, saltRounds);
-    const user = {
-      id: id,
+    const updatedUser = {
       level: level,
       xp: xp,
       email: email,
-      password: hashedPassword,
+      password: password,
       username: username,
     };
 
@@ -85,12 +83,12 @@ module.exports.updateUser = async (req, res) => {
       {
         id: id,
       },
-      user
+      updatedUser
     );
     console.log("matched: " + results.matchedCount);
     console.log("modified: " + results.modifiedCount);
     console.log(results);
-    res.send(results);
+    res.send({ success: true, updatedUser: updatedUser });
   } catch (err) {
     console.log(err);
   }
