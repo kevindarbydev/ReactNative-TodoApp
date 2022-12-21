@@ -9,6 +9,21 @@ module.exports.getAllTodos = async (req, res) => {
     console.log(err);
   }
 };
+/* ----- GET ALL by ID ------*/
+module.exports.getById = async (req, res) => {
+  if (req.body.userId === undefined){
+    res.send("id undefined");
+    return;
+  }
+  const userId = req.body.id;
+  try {
+    
+    const todos = await todoModel.find(userId);
+    res.send(todos);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 /*------ CREATE ------*/
 module.exports.saveTodo = async (req, res) => {
