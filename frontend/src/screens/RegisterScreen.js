@@ -7,13 +7,13 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { API_URL } from "@env";
 import { Formik } from "formik";
-import { URL_IP } from "@env";
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
 
-  const url = `${URL_IP}/user/save`;
+  const url = `${API_URL}/user/save`;
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -59,14 +59,14 @@ const RegisterScreen = () => {
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
-              className="bg-white px-10 py-5 rounded-lg mt-5"
+              className="bg-white w-60 p-5 text-center rounded-lg m-5"
             />
             <TextInput
               placeholder="Password"
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
               value={values.password}
-              className="bg-white px-10 py-5 rounded-lg mt-5"
+              className="bg-white w-60 p-5 text-center rounded-lg m-5"
               secureTextEntry
             />
           </View>

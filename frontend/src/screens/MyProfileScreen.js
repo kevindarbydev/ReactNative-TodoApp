@@ -6,7 +6,7 @@ const MyProfileScreen = () => {
   const { user } = React.useContext(AuthContext);
   return (
     <View
-      className="flex-1 bg-gray-200 items-center"
+      className="flex-1 items-center"
       // contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
     >
       {/* Testing retrieving user id from AuthContext after logging in  */}
