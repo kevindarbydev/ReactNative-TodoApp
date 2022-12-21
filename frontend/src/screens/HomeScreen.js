@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import axios, * as others from "axios";
 import { AuthContext } from "../hooks/useAuth";
 import {
   Keyboard,
@@ -15,7 +16,8 @@ import Info from "../components/Info";
 
 const HomeScreen = () => {
   const { user } = React.useContext(AuthContext);
-  const currentLevel = Number(user.level);
+  const currentLevel = Number(user.level); 
+  const saveTaskUrl = "http://${API_URL}/todo/save";
   const currentXp = Number(user.xp);
 
   // From Tut:
@@ -28,15 +30,34 @@ const HomeScreen = () => {
     setTask(null);
   };
 
-  const completeTask = (index) => {
+  const completeTask = (index, task) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
     currentXp = currentXp + 20;
+    saveTask(task);
 
     if (xp === 80) {
       currentLevel = currentLevel + 1;
       currentXp = 0
+    }
+  };
+  const saveTask = (task) => {
+    console.log(task + " " + user._id);
+    try {
+      axios
+        .post(saveTaskUrl, {
+          task: task,
+          userId: user._id,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -44,15 +65,18 @@ const HomeScreen = () => {
     <View className="flex-1">
       {/* Today's task */}
       <View className="pt-10 px-5">
-        <LevelBar level={currentLevel} xp={currentXp} />
+          <LevelBar level={currentLevel} xp={currentXp} />
         <Info />
         <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
         <View className="mt-8">
           {/* This is where the tasks will go */}
           {taskItems.map((item, index) => {
             return (
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item} xp="20" />
+              <TouchableOpacity
+                key={index}
+                onPress={() => completeTask(index, item)}
+              >
+                <Task text={item} />
               </TouchableOpacity>
             );
           })}
