@@ -105,7 +105,9 @@ const HomeScreen = () => {
         <TextInput
           className="bg-white w-60 py-4 px-4 rounded-full border-zinc-300 border"
           placeholder={"Write a Task"}
-          onChangeText={(text) => (text === null ? console.log("error") : setTask(text))}
+          onChangeText={(text) =>
+            text === null ? console.log("error") : setTask(text)
+          }
           value={task}
         />
         <TouchableOpacity onPress={handleAddTask}>
