@@ -1,19 +1,13 @@
-import {
-  View,
-  Text,
-  KeyboardAvoidingView,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Formik } from "formik";
+import { URL_IP } from "@env";
 
 const LoginScreen = () => {
-  
+
   const navigation = useNavigation();
-  const url = "http://<yourIPhere>:3001/user/login";
+  const url = `${URL_IP}/user/login`;
 
   return (
     <Formik
@@ -78,9 +72,7 @@ const LoginScreen = () => {
               onPress={() => navigation.navigate("Register")}
               className="bg-white items-center w-full mt-1 py-4 rounded-lg border-blue-500 border-2"
             >
-              <Text className="text-blue-500 font-semibold text-base">
-                Not yet registered?
-              </Text>
+              <Text className="text-blue-500 font-semibold text-base">Not yet registered?</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

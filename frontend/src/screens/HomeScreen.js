@@ -15,13 +15,6 @@ import Info from "../components/Info";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
-  // Removes default header
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  });
-
   const navigation = useNavigation();
 
   // From Tut:

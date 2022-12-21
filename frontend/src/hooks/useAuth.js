@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React, { createContext, useContext } from "react";
 
 const AuthContext = createContext({});
