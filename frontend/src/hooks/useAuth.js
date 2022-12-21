@@ -1,21 +1,13 @@
-import React, { createContext, useContext } from "react";
+import React, { useState } from "react";
 
-const AuthContext = createContext({});
+export const AuthContext = React.createContext();
 
 // Destructuring the props
-export const AuthProvider = ({ children }) => {
+export default AuthProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <AuthContext.Provider
-      value={{
-        isLoggedIn: true,
-      }}
-    >
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       {children}
     </AuthContext.Provider>
-  );
-};
-
-// Currently passing whatever value is declared in AuthContext.Provider
-export default function useAuth() {
-  return useContext(AuthContext);
+  )
 }

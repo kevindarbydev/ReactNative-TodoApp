@@ -3,10 +3,12 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Formik } from "formik";
 import { URL_IP } from "@env";
+import { AuthContext } from "../hooks/useAuth";
 
 const LoginScreen = () => {
 
   const navigation = useNavigation();
+  const { setIsLoggedIn } = React.useContext(AuthContext);
   const url = `${URL_IP}/user/login`;
 
   return (
@@ -31,6 +33,7 @@ const LoginScreen = () => {
             if (json.success === true) {
               try {
                 alert("Successfully logged in... redirecting to homepage");
+                setIsLoggedIn(true);
                 navigation.navigate("Home");
               } catch (error) {
                 console.log(error);
