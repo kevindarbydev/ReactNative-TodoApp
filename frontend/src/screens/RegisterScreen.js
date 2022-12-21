@@ -1,6 +1,7 @@
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { API_URL } from "@env";
 import { Formik } from "formik";
 
 const RegisterScreen = () => {
