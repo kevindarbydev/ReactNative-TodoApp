@@ -9,11 +9,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   level: {
-    type: Number,
+    type: String,
     default: 1,
   },
   xp: {
-    type: Number,
+    type: String,
     default: 0,
   },
 });

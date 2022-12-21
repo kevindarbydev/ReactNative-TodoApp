@@ -15,12 +15,12 @@ import Info from "../components/Info";
 
 const HomeScreen = () => {
   const { user } = React.useContext(AuthContext);
+  const currentLevel = Number(user.level);
+  const currentXp = Number(user.xp);
 
   // From Tut:
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
-  const [level, setLevel] = useState(1);
-  const [xp, setXp] = useState(0);
 
   const handleAddTask = () => {
     Keyboard.dismiss();
@@ -32,11 +32,11 @@ const HomeScreen = () => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
-    setXp(xp + 20);
+    currentXp = currentXp + 20;
 
     if (xp === 80) {
-      setLevel(level + 1);
-      setXp(0);
+      currentLevel = currentLevel + 1;
+      currentXp = 0
     }
   };
 
@@ -44,7 +44,7 @@ const HomeScreen = () => {
     <View className="flex-1">
       {/* Today's task */}
       <View className="pt-10 px-5">
-        <LevelBar level={user.level} xp={user.xp} />
+        <LevelBar level={currentLevel} xp={currentXp} />
         <Info />
         <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
         <View className="mt-8">
