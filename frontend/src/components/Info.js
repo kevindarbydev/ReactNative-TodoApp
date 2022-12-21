@@ -11,7 +11,7 @@ import {
 //!-------------------------------------------------------------------
 //! currently working on this, pushed just to help revert the many changes quicker - Chris
 
-export default function Info(props) {
+export default function Info() {
   const [animation, setAnimation] = useState(new Animated.Value(0));
   const { height } = Dimensions.get("window");
 
@@ -102,12 +102,6 @@ export default function Info(props) {
               >
                 <Text style={[styles.text]}>GOT IT</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.modalButton, styles.center]}
-                onPress={save}
-              >
-                <Text style={[styles.text]}>About Us</Text>
-              </TouchableOpacity>
             </View>
           </View>
         </Animated.View>
@@ -118,7 +112,7 @@ export default function Info(props) {
 
 const styles = StyleSheet.create({
   background: {
-    position: "absolute",
+    // position: "absolute",
     left: 0,
     right: 0,
     top: 0,
@@ -132,18 +126,21 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 
+  // "GOT IT" button
   modalButton: {
-    backgroundColor: "red",
+    backgroundColor: "#ff6ff7",
     borderRadius: 100,
     borderColor: "black",
-    marginTop: 64,
-    borderWidth: 2,
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingLeft: 25,
-    paddingRight: 25,
+    marginTop: 60,
+    borderWidth: 1,
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingLeft: 20,
+    paddingRight: 20,
     marginHorizontal: 5,
     flex: 1,
+    maxWidth: "50%",
+    marginStart: "25%",
   },
 
   moreText: {
