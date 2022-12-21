@@ -4,6 +4,7 @@ import MyProfileScreen from "../screens/MyProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import LogoutScreen from "../screens/LogoutScreen";
+import CommunityScreen from "../screens/CommunityScreen";
 import { AuthContext } from "../hooks/useAuth";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -20,6 +21,7 @@ function DrawerNavigator() {
           <>
             <Drawer.Screen name="Home" component={HomeScreen}></Drawer.Screen>
             <Drawer.Screen name="Profile" component={MyProfileScreen}></Drawer.Screen>
+            <Drawer.Screen name="Community" component={CommunityScreen}></Drawer.Screen>
             <Drawer.Screen name="Log Out" component={LogoutScreen}></Drawer.Screen>
           </>
         ) : (
