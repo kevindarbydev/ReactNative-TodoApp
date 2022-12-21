@@ -16,7 +16,14 @@ const CommunityScreen = () => {
   }, []);
 
   const allUsersElements = allUsers.map((user) => {
-    return <CommunityUserCard key={user._id} email={user.email} level={user.level} />;
+    return (
+      <CommunityUserCard
+        key={user._id}
+        level={user.level}
+        username={user.username}
+        dateAccCreated={user.dateAccCreated}
+      />
+    );
   });
 
   return (

@@ -29,6 +29,7 @@ module.exports.deleteUser = async (req, res) => {
 module.exports.saveUser = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  const username = req.body.username;
   console.log("Received email: " + email + "\n Password: " + password);
 
   try {
@@ -45,6 +46,7 @@ module.exports.saveUser = async (req, res) => {
         const userToSave = {
           email: email,
           password: hashedPassword,
+          username: username,
         };
         await userModel.create(userToSave);
         res.send({ success: true });

@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  KeyboardAvoidingView,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { API_URL } from "@env";
@@ -16,7 +10,7 @@ const RegisterScreen = () => {
   const url = `${API_URL}/user/save`;
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ email: "", password: "", username: "" }}
       onSubmit={(values) => {
         console.log("(Register) email: " + values.email);
         console.log("(Register) pw: " + values.password);
@@ -29,23 +23,20 @@ const RegisterScreen = () => {
           body: JSON.stringify({
             email: values.email,
             password: values.password,
+            username: values.username,
           }),
         })
           .then((data) => data.json())
           .then((json) => {
             if (json.success === true) {
               try {
-                alert(
-                  "Successfully Registered! - Redirecting you to the login page"
-                );
+                alert("Successfully Registered! - Redirecting you to the login page");
                 navigation.navigate("Login");
               } catch (error) {
                 console.log(error);
               }
             } else {
-              alert(
-                `Invalid registration - email ${values.email} already exists`
-              );
+              alert(`Invalid registration - email ${values.email} already exists`);
             }
           })
           .catch((error) => console.log(error));
@@ -62,6 +53,13 @@ const RegisterScreen = () => {
               className="bg-white w-60 p-5 text-center rounded-lg m-5"
             />
             <TextInput
+              placeholder="Username"
+              onChangeText={handleChange("username")}
+              onBlur={handleBlur("username")}
+              value={values.username}
+              className="bg-white w-60 p-5 text-center rounded-lg m-5"
+            />
+            <TextInput
               placeholder="Password"
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
@@ -75,9 +73,7 @@ const RegisterScreen = () => {
               onPress={handleSubmit}
               className="bg-white items-center w-full mt-1 py-4 rounded-lg border-blue-500 border-2"
             >
-              <Text className="text-blue-500 font-semibold text-base">
-                Register
-              </Text>
+              <Text className="text-blue-500 font-semibold text-base">Register</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

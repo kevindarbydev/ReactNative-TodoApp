@@ -16,6 +16,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: 0,
   },
+  username: {
+    type: String,
+    required: true,
+  },
+  dateAccCreated: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 // Mongoose will assume there is a collection called the plural of this name (i.e., 'users' in this case).

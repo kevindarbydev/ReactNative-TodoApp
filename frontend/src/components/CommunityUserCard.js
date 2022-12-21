@@ -9,11 +9,9 @@ const CommunityUserCard = (props) => {
         className="h-7 w-7 bg-gray-300 p-4 rounded-full"
       />
       <View className="flex-1">
-        <Text className=" text-teal-300 font-bold">{props.email}</Text>
+        <Text className=" text-teal-300 font-bold">{props.username}</Text>
         <Text className=" text-white">LVL {props.level}</Text>
-      </View>
-      <View>
-        <Text className="text-gray-400">Active since: </Text>
+        <Text className="text-gray-400">Active since: {props.dateAccCreated}</Text>
       </View>
     </View>
   );

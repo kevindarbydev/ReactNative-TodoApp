@@ -3,10 +3,12 @@ import axios, * as others from "axios";
 import React, { useState, useEffect } from "react";
 import { AuthContext } from "../hooks/useAuth";
 import CompletedTask from "../components/CompletedTask";
+import { API_URL } from "@env";
+
 const MyProfileScreen = () => {
   const { user } = React.useContext(AuthContext);
   const [completeTasks, setCompleteTasks] = useState([]);
-  const url = `http://192.168.2.11:3001/todo/completed`;
+  const url = `${API_URL}/todo/completed`;
 
   useEffect(() => {
     try {
@@ -18,7 +20,7 @@ const MyProfileScreen = () => {
           console.log(JSON.stringify(response.data.task));
           var taskArray = [];
           for (let taskObj of response.data) {
-           // console.log("MPS: " + taskObj._id); 
+            // console.log("MPS: " + taskObj._id);
             taskArray.push({
               task: taskObj.task,
               _id: taskObj._id,
@@ -35,21 +37,13 @@ const MyProfileScreen = () => {
     }
   }, []);
 
-const allCompletedTasks = completeTasks.map((task) => {
-  //console.log(task);
-  return (
-    <CompletedTask
-      key={task._id}
-      task={task.task}
-      dateCompleted={task.dateCompleted}
-    />
-  );
-})
+  const allCompletedTasks = completeTasks.map((task) => {
+    //console.log(task);
+    return <CompletedTask key={task._id} task={task.task} dateCompleted={task.dateCompleted} />;
+  });
 
   return (
     <View className="flex-1 items-center">
-      {/* Testing retrieving user id from AuthContext after logging in  */}
-      <Text> {user._id} </Text>
       <Text className="font-bold text-2xl mt-5">Completed Tasks</Text>
       {allCompletedTasks}
     </View>
