@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import Task from "../components/Task";
 import LevelBar from "../components/LevelBar";
-import Info from "../components/Info";
+
 import { API_URL2 } from "@env";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -29,27 +29,10 @@ const HomeScreen = () => {
   const currentLevel = Number(user.level);
   const currentXp = Number(user.xp);
 
-  // Was testing out useEffect here ----- but doesn't really make sense
-  // useEffect(() => {
-  //   setXp((prevState) => {
-  //     prevState + 20;
-  //   });
-  //   if (xp === 80) {
-  //     setLevel((prevState) => {
-  //       prevState + 1;
-  //     });
-  //     setXp(0);
-  //   }
-  // }, [xp, level]);
-
   const handleAddTask = () => {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task]);
     setTask(null);
-    alert(AsyncStorage.getItem('password'));
-    // Was using this for debugging another problem (Resolved)
-    // console.log("CurrentLevel: " + level + " & CurrentXp: " + xp);
-    // console.log("Current logged in user info --> ID:" + user._id + ", Username: " + user.username);
   };
 
   const completeTask = async (index, task) => {
@@ -60,9 +43,9 @@ const HomeScreen = () => {
 
     user.xp = (currentXp + 20).toString();
 
-    if (user.xp === '100') {
+    if (user.xp === "100") {
       user.level = (currentLevel + 1).toString();
-      user.xp = '0';
+      user.xp = "0";
     }
 
     await fetch(userUrl, {
@@ -83,7 +66,7 @@ const HomeScreen = () => {
       .then((json) => {
         if (json.success === true) {
           try {
-            alert("Level and XP have been updated to LVL: " + user.level + ", XP: " + user.xp);
+            // alert("Level and XP have been updated to LVL: " + user.level + ", XP: " + user.xp);
           } catch (error) {
             console.log(error);
           }
@@ -118,10 +101,10 @@ const HomeScreen = () => {
   return (
     <View className="flex-1">
       {/* Today's task */}
-      <View className="pt-10 px-5">
+      <View className="pt-10 px-5 ">
         <LevelBar level={currentLevel} xp={currentXp} />
-        <Info />
-        <Text className="text-2xl font-bold text-center">Today's Tasks</Text>
+
+        <Text className="text-2xl font-bold text-center  text-gray-50">Today's Tasks</Text>
         <View className="mt-8">
           {/* This is where the tasks will go */}
           {taskItems.map((item, index) => {

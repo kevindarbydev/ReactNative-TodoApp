@@ -11,8 +11,8 @@ export default function LogoutButton() {
   };
 
   return (
-    <View className="flex-1">
-      <Text className="text-2xl font-bold text-center">
+    <View className="m-10">
+      <Text className="text-2xl font-bold text-center text-gray-50 mb-10">
         Are you sure you want to Log Out? You will not be able to access your Tasks once logged out.
       </Text>
       <TouchableOpacity

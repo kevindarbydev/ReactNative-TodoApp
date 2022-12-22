@@ -40,22 +40,15 @@ const MyProfileScreen = () => {
   const allCompletedTasks = completeTasks.map((task) => {
     //console.log(task);
     if (user._id == task.userId) {
-      return (
-        <CompletedTask
-          key={task._id}
-          task={task.task}
-          dateCompleted={task.dateCompleted}
-        />
-      );
+      return <CompletedTask key={task._id} task={task.task} dateCompleted={task.dateCompleted} />;
     } else {
       return null;
     }
   });
 
   return (
-    <ScrollView className="flex-1"
-      contentContainerStyle="center">
-      <Text className="font-bold text-2xl mt-5">Completed Tasks</Text>
+    <ScrollView className="flex-1" contentContainerStyle="center">
+      <Text className="font-bold text-2xl mt-5  text-gray-50 text-center">Completed Tasks</Text>
       {allCompletedTasks}
     </ScrollView>
   );

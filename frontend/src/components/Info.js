@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  Animated,
-  StyleSheet,
-} from "react-native";
+import { Text, TouchableOpacity, View, Animated, StyleSheet } from "react-native";
+import { AuthContext } from "../hooks/useAuth";
 
 //!-------------------------------------------------------------------
 //! currently working on this, pushed (pushing) just to help revert the many changes quicker - Chris
@@ -54,32 +49,23 @@ export default function Info() {
   };
 
   return (
-    <View style={[styles.container, styles.center]}>
+    <View style={[styles.center]}>
       {/* how it works button */}
       <View style={[styles.center]}>
-        <TouchableOpacity
-          style={[styles.mainButton, styles.center]}
-          onPress={modalTrigger}
-        >
+        <TouchableOpacity style={[styles.mainButton, styles.center]} onPress={modalTrigger}>
           <Text style={[styles.text]}>HOW IT WORKS</Text>
         </TouchableOpacity>
       </View>
-      <Animated.View
-        style={[styles.background, background]}
-        pointerEvents="box-none"
-      >
+      <Animated.View style={[styles.background, background]} pointerEvents="box-none">
         <Animated.View style={[styles.background, open]}>
           <View>
             {/* <Text style={[styles.text]}>Welcome to our cool app.</Text> */}
             <Text style={[styles.text, styles.moreText]}>
-              Keep yourself motivated by leveling up with experience points! Add
-              your tasks and tap them once you're done and you'll gain XP! 🕹😁🕹
+              Keep yourself motivated by leveling up with experience points! Add your tasks and tap
+              them once you're done and you'll gain XP! 🕹😁🕹
             </Text>
             <View>
-              <TouchableOpacity
-                style={[styles.modalButton, styles.center]}
-                onPress={close}
-              >
+              <TouchableOpacity style={[styles.modalButton, styles.center]} onPress={close}>
                 <Text style={[styles.text]}>GOT IT</Text>
               </TouchableOpacity>
             </View>
@@ -126,13 +112,13 @@ const styles = StyleSheet.create({
 
   moreText: {
     textAlign: "center",
-    marginTop: 1050,
+    marginTop: 200,
   },
 
   // how it works button, text body
   text: {
     fontSize: 23,
-    color: "black",
+    color: "white",
     fontWeight: "500",
   },
 
@@ -157,6 +143,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   mainButton: {
+    marginTop: 5,
     zIndex: 10,
     width: 200,
     height: 72,
@@ -164,8 +151,5 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     backgroundColor: "orange",
-  },
-  container: {
-    backgroundColor: "rgb(229, 231, 235)",
   },
 });
