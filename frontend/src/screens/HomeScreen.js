@@ -48,6 +48,7 @@ const HomeScreen = () => {
       user.xp = "0";
     }
 
+    alert(user._id);
     await fetch(userUrl, {
       method: "POST",
       headers: {
@@ -55,6 +56,7 @@ const HomeScreen = () => {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
+        _id: user._id,
         level: user.level,
         xp: user.xp,
         email: user.email,

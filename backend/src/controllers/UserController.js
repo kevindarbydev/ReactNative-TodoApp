@@ -81,7 +81,7 @@ module.exports.updateUser = async (req, res) => {
     console.log("Trying to update record with credentials: " + id);
     const results = await userModel.replaceOne(
       {
-        id: id,
+        _id: id,
       },
       updatedUser
     );
