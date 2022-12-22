@@ -13,25 +13,21 @@ import {
 import Task from "../components/Task";
 import LevelBar from "../components/LevelBar";
 import Info from "../components/Info";
-import { API_URL } from "@env";
+import { API_URL2 } from "@env";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
   const { user, setUser } = React.useContext(AuthContext);
 
-  //Trying to refresh the user here (but for some reason, the xp is not being save in the DB)
-  useEffect(() => {
-    setUser(user);
-  }, [user]);
-
-  const saveTaskUrl = `${API_URL}/todo/save`;
-  const userUrl = `${API_URL}/user/update/${user._id}`;
+  const saveTaskUrl = `${API_URL2}/todo/save`;
+  const userUrl = `${API_URL2}/user/update/${user._id}`;
 
   // From Tut:
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
 
-  let currentLevel = user.level;
-  let currentXp = user.xp;
+  const currentLevel = Number(user.level);
+  const currentXp = Number(user.xp);
 
   // Was testing out useEffect here ----- but doesn't really make sense
   // useEffect(() => {
@@ -50,6 +46,7 @@ const HomeScreen = () => {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task]);
     setTask(null);
+    alert(AsyncStorage.getItem('password'));
     // Was using this for debugging another problem (Resolved)
     // console.log("CurrentLevel: " + level + " & CurrentXp: " + xp);
     // console.log("Current logged in user info --> ID:" + user._id + ", Username: " + user.username);
@@ -61,10 +58,11 @@ const HomeScreen = () => {
     setTaskItems(itemsCopy);
     saveTask(task);
 
-    currentXp = currentXp + 20;
-    if (currentXp === 80) {
-      currentLevel = currentLevel + 1;
-      currentXp = 0;
+    user.xp = (currentXp + 20).toString();
+
+    if (user.xp === '100') {
+      user.level = (currentLevel + 1).toString();
+      user.xp = '0';
     }
 
     await fetch(userUrl, {
@@ -74,8 +72,8 @@ const HomeScreen = () => {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
-        level: currentLevel,
-        xp: currentXp,
+        level: user.level,
+        xp: user.xp,
         email: user.email,
         password: user.password,
         username: user.username,
@@ -85,7 +83,7 @@ const HomeScreen = () => {
       .then((json) => {
         if (json.success === true) {
           try {
-            alert("Level and XP have been updated to LVL: " + currentLevel + ", XP: " + currentXp);
+            alert("Level and XP have been updated to LVL: " + user.level + ", XP: " + user.xp);
           } catch (error) {
             console.log(error);
           }

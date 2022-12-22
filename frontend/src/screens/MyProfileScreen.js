@@ -3,11 +3,11 @@ import axios, * as others from "axios";
 import React, { useState, useEffect } from "react";
 import { AuthContext } from "../hooks/useAuth";
 import CompletedTask from "../components/CompletedTask";
-import { API_URL } from "@env";
+import { API_URL2 } from "@env";
 const MyProfileScreen = () => {
   const { user } = React.useContext(AuthContext);
   const [completeTasks, setCompleteTasks] = useState([]);
-  const url = `${API_URL}/todo/completed`;
+  const url = `${API_URL2}/todo/completed`;
 
   useEffect(() => {
     try {
@@ -23,6 +23,7 @@ const MyProfileScreen = () => {
             taskArray.push({
               task: taskObj.task,
               _id: taskObj._id,
+              userId: taskObj.userId,
               dateCompleted: taskObj.dateCompleted,
             });
           }
@@ -38,18 +39,22 @@ const MyProfileScreen = () => {
 
   const allCompletedTasks = completeTasks.map((task) => {
     //console.log(task);
-    return (
-      <CompletedTask
-        key={task._id}
-        task={task.task}
-        dateCompleted={task.dateCompleted}
-      />
-    );
+    if (user._id == task.userId) {
+      return (
+        <CompletedTask
+          key={task._id}
+          task={task.task}
+          dateCompleted={task.dateCompleted}
+        />
+      );
+    } else {
+      return null;
+    }
   });
 
   return (
     <ScrollView className="flex-1"
-    contentContainerStyle="center">
+      contentContainerStyle="center">
       <Text className="font-bold text-2xl mt-5">Completed Tasks</Text>
       {allCompletedTasks}
     </ScrollView>

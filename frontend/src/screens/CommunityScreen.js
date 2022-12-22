@@ -1,11 +1,11 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import { API_URL } from "@env";
+import { API_URL2 } from "@env";
 import CommunityUserCard from "../components/CommunityUserCard";
 
 const CommunityScreen = () => {
   const [allUsers, setAllUsers] = useState([]);
-  const url = `${API_URL}/user`;
+  const url = `${API_URL2}/user`;
 
   useEffect(() => {
     fetch(url)

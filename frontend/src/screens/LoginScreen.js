@@ -2,14 +2,15 @@ import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "r
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Formik } from "formik";
-import { API_URL } from "@env";
+import { API_URL2 } from "@env";
 import { AuthContext } from "../hooks/useAuth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const { setIsLoggedIn, user, setUser } = React.useContext(AuthContext);
 
-  const url = `${API_URL}/user/login`;
+  const url = `${API_URL2}/user/login`;
 
   return (
     <Formik
@@ -18,6 +19,8 @@ const LoginScreen = () => {
         console.log("(Login) email: " + values.email);
         console.log("(Login) pw: " + values.password);
         console.log("(Login) userId before success: " + user._id);
+        AsyncStorage.setItem("password", values.password);
+
         fetch(url, {
           method: "POST",
           headers: {

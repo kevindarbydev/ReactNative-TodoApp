@@ -1,13 +1,13 @@
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { API_URL } from "@env";
+import { API_URL2 } from "@env";
 import { Formik } from "formik";
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
 
-  const url = `${API_URL}/user/save`;
+  const url = `${API_URL2}/user/save`;
   return (
     <Formik
       initialValues={{ email: "", password: "", username: "" }}
